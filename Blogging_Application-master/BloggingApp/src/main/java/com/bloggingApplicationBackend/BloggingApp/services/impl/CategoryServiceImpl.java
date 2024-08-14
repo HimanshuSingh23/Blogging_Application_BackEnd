@@ -1,8 +1,10 @@
 package com.bloggingApplicationBackend.BloggingApp.services.impl;
 
 import com.bloggingApplicationBackend.BloggingApp.entities.Category;
+import com.bloggingApplicationBackend.BloggingApp.entities.User;
 import com.bloggingApplicationBackend.BloggingApp.exceptions.ResourceNotFoundException;
 import com.bloggingApplicationBackend.BloggingApp.payloads.CategoryDto;
+import com.bloggingApplicationBackend.BloggingApp.payloads.UserDto;
 import com.bloggingApplicationBackend.BloggingApp.repositories.CategoryRepo;
 import com.bloggingApplicationBackend.BloggingApp.services.CategoryService;
 import org.modelmapper.ModelMapper;
@@ -29,6 +31,14 @@ public class CategoryServiceImpl implements CategoryService {
         Category cat = this.modelMapper.map(categoryDto,Category.class);
         Category addedCat = this.categoryRepo.save(cat);
         return this.modelMapper.map(addedCat,CategoryDto.class);
+
+//        User user = this.dtoToUser(userDto);
+//        User savedUser = this.userRepo.save(user);
+//        return this.userToDto(savedUser);
+
+//        Category category = this.dtoToCategory(categoryDto);
+//        Category savedCategory = this.categoryRepo.save(category);
+//        return this.categoryToDto(savedCategory);
     }
 
     @Override
@@ -36,7 +46,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         Category cat = this.categoryRepo.findById(categoryId).orElseThrow(()-> new ResourceNotFoundException("Category ","categoryId",categoryId));
 
-        cat.setCategoryTtile(categoryDto.getCategoryTitle());
+        cat.setCategoryTitle(categoryDto.getCategoryTitle());
         cat.setCategoryDescription(categoryDto.getCategoryDescription());
 
         Category updatedCat = this.categoryRepo.save(cat);
@@ -67,4 +77,29 @@ public class CategoryServiceImpl implements CategoryService {
 
         return catDtos;
     }
+
+
+//
+//    private Category dtoToCategory(CategoryDto categoryDto){
+//        Category cat = this.modelMapper.map(categoryDto, Category.class);
+//
+////		user.setId(userDto.getId());
+////		user.setName(userDto.getName());
+////		user.setEmail(userDto.getEmail());
+////		user.setAbout(userDto.getAbout());
+////		user.setPassword(userDto.getPassword());
+//        return cat;
+//
+//    }
+//
+//    private CategoryDto categoryToDto(Category cat)
+//    {
+//        CategoryDto catDto = this.modelMapper.map(cat, CategoryDto.class);
+////		userDto.setId(user.getId());
+////		userDto.setName(user.getName());
+////		userDto.setEmail(user.getEmail());
+////		userDto.setAbout(user.getAbout());
+////		userDto.setPassword(user.getPassword());
+//        return catDto;
+//    }
 }

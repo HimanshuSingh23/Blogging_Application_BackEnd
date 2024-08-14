@@ -4,6 +4,7 @@ package com.bloggingApplicationBackend.BloggingApp.controller;
 import com.bloggingApplicationBackend.BloggingApp.payloads.ApiResponse;
 import com.bloggingApplicationBackend.BloggingApp.payloads.CategoryDto;
 import com.bloggingApplicationBackend.BloggingApp.services.CategoryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +22,10 @@ public class CategoryController {
 
     //create
     @PostMapping("/")
-    public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto)
+    public ResponseEntity<CategoryDto> createCategory(@Valid @RequestBody CategoryDto categoryDto)
     {
          CategoryDto createdCategory = this.categoryService.createCategory(categoryDto);
-         return new ResponseEntity<CategoryDto>(createdCategory, HttpStatus.CREATED);
+         return new ResponseEntity<>(createdCategory, HttpStatus.CREATED);
     }
 
 
