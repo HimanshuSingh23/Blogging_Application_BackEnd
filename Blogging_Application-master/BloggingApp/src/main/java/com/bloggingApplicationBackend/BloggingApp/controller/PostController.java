@@ -26,11 +26,21 @@ public class PostController {
         return new ResponseEntity<PostDto>(createPost, HttpStatus.CREATED);
     }
 
-    @GetMapping("/user/{user}/posts")
+    @GetMapping("/user/{userId}/posts")
     public ResponseEntity<List<PostDto>> getPostsByUser(@PathVariable Integer userId)
     {
 
         List<PostDto> posts = this.postService.getPostsByUser(userId);
+        return new ResponseEntity<List<PostDto>>(posts,HttpStatus.OK);
+
+    }
+
+
+    @GetMapping("/category/{categoryId}/posts")
+    public ResponseEntity<List<PostDto>> getPostsByCategory(@PathVariable Integer categoryId)
+    {
+
+        List<PostDto> posts = this.postService.getPostsByCategory(categoryId);
         return new ResponseEntity<List<PostDto>>(posts,HttpStatus.OK);
 
     }
