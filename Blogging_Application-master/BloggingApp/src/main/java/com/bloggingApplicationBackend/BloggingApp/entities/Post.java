@@ -1,12 +1,18 @@
 package com.bloggingApplicationBackend.BloggingApp.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 
 
 @Entity
 @Table(name = "PostTable")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Post {
 
     @Id
