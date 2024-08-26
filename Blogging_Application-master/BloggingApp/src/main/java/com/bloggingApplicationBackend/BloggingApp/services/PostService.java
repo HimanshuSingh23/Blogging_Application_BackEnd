@@ -2,6 +2,7 @@ package com.bloggingApplicationBackend.BloggingApp.services;
 
 import com.bloggingApplicationBackend.BloggingApp.entities.Post;
 import com.bloggingApplicationBackend.BloggingApp.payloads.PostDto;
+import com.bloggingApplicationBackend.BloggingApp.payloads.PostResponse;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface PostService {
 
     void deletePost(Integer postId);
 
-    List<PostDto> getAllPost(Integer pageNumber,Integer pageSize);
+    PostResponse getAllPost(Integer pageNumber, Integer pageSize);
 
     PostDto getPostById(Integer postId);
 

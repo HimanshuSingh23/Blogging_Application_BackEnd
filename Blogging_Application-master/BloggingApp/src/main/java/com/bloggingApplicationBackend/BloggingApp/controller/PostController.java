@@ -3,6 +3,7 @@ package com.bloggingApplicationBackend.BloggingApp.controller;
 import com.bloggingApplicationBackend.BloggingApp.entities.Post;
 import com.bloggingApplicationBackend.BloggingApp.payloads.ApiResponse;
 import com.bloggingApplicationBackend.BloggingApp.payloads.PostDto;
+import com.bloggingApplicationBackend.BloggingApp.payloads.PostResponse;
 import com.bloggingApplicationBackend.BloggingApp.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,12 +48,12 @@ public class PostController {
     }
 
     @GetMapping("/posts")
-    public ResponseEntity<List<PostDto>> getAllPost(
-            @RequestParam(value = "pageNumber",defaultValue = "1",required = false) Integer pageNumber,
+    public ResponseEntity<PostResponse> getAllPost(
+            @RequestParam(value = "pageNumber",defaultValue = "0",required = false) Integer pageNumber,
             @RequestParam(value = "pageSize",defaultValue = "1",required = false) Integer pageSize)
     {
-        List<PostDto> allPosts = this.postService.getAllPost(pageNumber,pageSize);
-        return new ResponseEntity<List<PostDto>>(allPosts,HttpStatus.OK);
+        PostResponse postResponse = this.postService.getAllPost(pageNumber,pageSize);
+        return new ResponseEntity<PostResponse>(postResponse,HttpStatus.OK);
     }
 
     @GetMapping("/posts/{postId}")
